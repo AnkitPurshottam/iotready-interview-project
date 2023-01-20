@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ankit's Submission</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-stone-100">
+    <div class="container mx-auto my-8 p-8 bg-white shadow">
+      <form>
+        <div class="flex gap-4 w-2/3">
+          <div class="w-full">
+            <label class="text-sm block text-gray-600" for="hub">Hub</label>
+            <input
+              class="bg-stone-200 rounded px-2 py-1 font-medium text-gray-700 w-full"
+              type="text"
+              id="hub"
+              value="{{sku_data.hub}}"
+              required
+            />
+          </div>
+
+          <div class="w-full">
+            <label class="text-sm block text-gray-600" for="grn">GRN</label>
+            <input
+              class="bg-stone-200 rounded px-2 py-1 font-medium text-gray-700 w-full"
+              type="text"
+              id="grn"
+              value="{{sku_data.grn}}"
+            />
+          </div>
+        </div>
+
+        <label class="text-sm block text-gray-600 mt-4" for="supplier">
+          Supplier
+        </label>
+        <input
+          class="w-1/3 bg-stone-200 rounded px-2 py-1 font-medium text-gray-700"
+          type="text"
+          id="supplier"
+          value="{{sku_data.supplier}}"
+          required
+        />
+
+        <label class="text-sm block text-gray-600 mt-4" for="supplier_name"
+          >Supplier Name</label
+        >
+        <input
+          class="w-1/3 bg-stone-200 rounded px-2 py-1 font-medium text-gray-700 disabled:opacity-50"
+          type="text"
+          id="supplier_name"
+          value="{{sku_data.supplier_name}}"
+          disabled
+        />
+      </form>
+    </div>
+
+    <div class="container mx-auto my-8 p-8 bg-white shadow">
+      <h1 class="text-lg font-bold mb-4">SKU Summary</h1>
+      <h2>SKU Table</h2>
+      <table class="table-auto w-full border border-stone-200">
+        <tr class="border-b border-stone-200 text-left text-stone-500">
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">
+            <input type="checkbox" />
+            <span> No.</span>
+          </th>
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">Sku</th>
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">
+            Sku description
+          </th>
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">
+            Standard Crate Quantity
+          </th>
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">
+            Procured Quantity
+          </th>
+        </tr>
+
+        {% for sku_table_item in sku_data.sku_table %}
+        <tr class="border-b border-stone-200 text-left">
+          <td class="border-r border-stone-200 px-2 py-0.5">
+            <input type="checkbox" />
+            <span>{{loop.index}}</span>
+          </td>
+          <td class="border-r border-stone-200 px-2 py-0.5 font-medium">
+            {{sku_table_item.sku}}
+          </td>
+          <td class="border-r border-stone-200 px-2 py-0.5">
+            {{sku_table_item.sku}}
+          </td>
+          <td class="border-r border-stone-200 px-2 py-0.5">
+            {{sku_table_item.sku_description}}
+          </td>
+          <td class="border-r border-stone-200 px-2 py-0.5">
+            {{sku_table_item.standard_crate_quantity}}
+          </td>
+          <td class="border-r border-stone-200 px-2 py-0.5 font-medium">
+            {{sku_table_item.quantity}}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="container mx-auto my-8 p-8 bg-white shadow">
+      <h1 class="text-lg font-bold mb-4">Crate List</h1>
+      <h2>Crate Table</h2>
+      <table class="table-auto w-full border border-stone-200">
+        <tr class="border-b border-stone-200 text-left text-stone-500">
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">
+            <input type="checkbox" />
+            <span> No.</span>
+          </th>
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">
+            Crate
+          </th>
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">Sku</th>
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">
+            Packed Quantity
+          </th>
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">
+            Crate Weight
+          </th>
+          <th class="border-r border-stone-200 px-2 py-0.5 font-normal">
+            Is Final Crate
+          </th>
+        </tr>
+
+        {% for crate_table_item in sku_data.crate_table %}
+        <tr class="border-b border-stone-200 text-left">
+          <td class="border-r border-stone-200 px-2 py-0.5">
+            <input type="checkbox" />
+            <span>{{loop.index}}</span>
+          </td>
+          <td class="border-r border-stone-200 px-2 py-0.5 font-medium">
+            {{crate_table_item.crate}}
+          </td>
+          <td class="border-r border-stone-200 px-2 py-0.5">
+            {{crate_table_item.sku}}
+          </td>
+          <td class="border-r border-stone-200 px-2 py-0.5">
+            {{crate_table_item.packed_quantity}}
+          </td>
+          <td class="border-r border-stone-200 px-2 py-0.5">
+            {{crate_table_item.crate_weight}}
+          </td>
+          <td class="border-r border-stone-200 px-2 py-0.5 font-medium">
+            {{crate_table_item.is_final_crate}}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
